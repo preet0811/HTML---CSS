@@ -1,0 +1,66 @@
+table,
+th,
+td,
+tr {
+  padding: 2px;
+  border: 1px solid black;
+}
+
+.color-class {
+  color: darkolivegreen;
+  font-weight: bold;
+}
+
+.header-html {
+  color: red;
+  font-size: 24px;
+  text-align: center;
+}
+
+.question-class {
+  color: darkred;
+  border: 1px solid;
+  font-weight: bold;
+}
+
+.unordered-list {
+  list-style-type: square;
+  color: blue;
+  background-color: lightgray;
+}
+
+body {
+  background-color: rgb(249, 248, 247);
+}
+
+.Q23-class {
+  border: 2px solid green;
+  margin: 10px;
+  padding: 5px;
+}
+
+.Q23b-class {
+  background-color: yellow; /* Set a background color of yellow for the second paragraph only */
+}
+
+.ul-28 {
+  list-style-type: none; /* Remove default list styles */
+  margin: 0;
+  padding: 0;
+  background-color: gray; /* Set a background color of gray for the navigation menu */
+  display: grid; /* Display the navigation items horizontally */
+  grid-template-columns: 2fr 2fr 2fr 2fr;
+  justify-content: center;
+}
+
+.li-28 {
+  padding: 10px;
+}
+.li-28:hover {
+  background-color: darkgray; /* Set a hover effect, changing background color to dark gray */
+}
+
+.a-28 {
+  text-decoration: none;
+  color: white;
+}

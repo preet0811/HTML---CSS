@@ -6,14 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My first web page</title>
 </head>
-<style>
-  .color-class {
-    color: blueviolet;
-  }
-</style>
+<link rel="stylesheet" href="exercise-1.css">
+
 
 <body>
-  <h1>
+  <h1 class="header-html">
     Welcome to My webpage
   </h1>
 
@@ -21,7 +18,7 @@
     This is my first webpage. i'm excited to learn HTML!
   </p>
 
-  <P>
+  <P class="question-class">
     (1). What is the purpose of the title element?
   </P>
   <P class="color-class">
@@ -30,7 +27,7 @@
     wide context.
   </P>
 
-  <p>
+  <P class="question-class">
     (2). Which element is used to define the main heading of a webpage?
   </p>
 
@@ -39,7 +36,7 @@
     &lt;H3&gt;, and so on.
   </p>
 
-  <p>
+  <P class="question-class">
     (3). How do you create a paragraph in HTML?
   </p>
 
@@ -50,7 +47,7 @@
     a paragraph.
   </p>
 
-  <p>
+  <P class="question-class">
     (4). Use the image &quot;image.jpg&quot; from your local directory.
   </p>
 
@@ -58,7 +55,7 @@
     ANS - <img src="thumbnail-1.webp" width="300" height="200">
   </p>
 
-  <p>
+  <P class="question-class">
     (5). Create a link that directs to &quot;https://www.example.com&quot; and displays the text
     &quot;Visit Example.com&quot;.
   </p>
@@ -67,7 +64,7 @@
     ANS - <a href="&quot;https://www.example.com&quot;">Visit W3Schools.com!</a>
   </p>
 
-  <P>
+  <P class="question-class">
     (6). How do you insert an image in HTML?
   </P>
 
@@ -81,7 +78,7 @@
     <br class="color-class">alt - Specifies an alternate text for the image
   </P>
 
-  <p>
+  <P class="question-class">
     (7). What attributes can you use to specify the size of an image in HTML?
   </p>
 
@@ -89,7 +86,7 @@
     ANS - Width and Height attributes
   </p>
 
-  <p>
+  <P class="question-class">
     (8). How do you create a hyperlink in HTML?
   </p>
 
@@ -99,7 +96,7 @@
     The &lt;a&gt; tag indicates where the hyperlink starts and the </a> tag indicates where it ends. Whatever text gets
     added inside these tags, will work as a hyperlink. Add the URL for the link in the &lt;a href=” ”>
   </p>
-  <p>
+  <P class="question-class">
     (9). A text input field for the user&#39;s name.
   </p>
 
@@ -107,9 +104,9 @@
     <form>
       <input name="text" placeholder="User Name">
     </form>
-    
+
   </div>
-  <p>
+  <P class="question-class">
     (10). A radio button group for gender selection (Male/Female/Other).
   </p>
 
@@ -124,7 +121,7 @@
     </form>
   </div>
 
-  <p>
+  <P class="question-class">
     (11). A checkbox for accepting the terms and conditions.
   </p>
 
@@ -133,7 +130,7 @@
     <label for="terms and conditions">terms and conditions</label>
   </div>
 
-  <p>
+  <P class="question-class">
     (12). A submit button.
   </p>
 
@@ -141,12 +138,358 @@
     <button>Submit</button>
   </div>
 
+  <P class="question-class">
+    (13).How do you create a text input field in HTML?
+  </p>
+
+  <p class="color-class">
+    ANS - The <code>&lt;input type="text"&gt;</code> defines a single-line text field.
+  </p>
+
+  <P class="question-class">
+    (14). Create an HTML table with the following data:<br>
+    | Name | Age | Email |<BR>
+    | John Doe | 25 | johndoe@example.com |
+  </P>
+
+  <p>
+    ANS -
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Email</th>
+    </tr>
+    <tr>
+      <td>John Doe</td>
+      <td>25</td>
+      <td>Preet81196@gmail.com</td>
+    </tr>
+    <tr>
+      <td>Jane Smith</td>
+      <td>30</td>
+      <td>Preetpatel619@gmail.com</td>
+    </tr>
+
+  </table>
+  </p>
+
+  <P class="question-class">
+    (15).<br>
+    1.How do you create a table in HTML?<br>
+    2. How do you define table headers in HTML?<br>
+    3. How do you add rows to an HTML table?
+  </p>
+
+  <p class="color-class">
+    ANS - <strong> A table:</strong> Use the <code>&lt;table&gt;</code> element to create the table itself. Inside the
+    <code>&lt;table&gt;</code> element, you will define the table rows and cells.
+    <br>
+    <br>
+    <strong>Define table headers:</strong> you use the <code>&lt;th&gt;</code> element within a table row
+    <code>&lt;tr&gt;</code>. The <code>&lt;th&gt;</code> element is used for header cells, which typically contain the
+    titles or labels for each column.
+    <br>
+    <br>
+    Each table row starts with a <code>&lt;tr&gt;</code> and ends with a <code>&lt;tr&gt;</code> tag.
+  </p>
+
+  <P class="question-class">
+    (16). How do you select an HTML element in CSS?
+  </p>
+  <p class="color-class">
+    ANS - <strong>Element selector :</strong> p {/* CSS properties */}
+    <br> <strong> Class selector : </strong> .my-class {/* CSS properties */}
+    <br> <strong>ID selector :</strong> #my-id{},
+    <br> <strong>Attribute selector :</strong> input[type="text"] {/* CSS properties */ }
+
+    <br> <strong>Child selector :</strong> ul > li {/* CSS properties */},
+    <br> <strong>Descendant selector :</strong> div a {/* CSS properties */}
+  </p>
+
+  <P class="question-class">
+    (17). How do you set the font color in CSS?
+    <p class="color-class">
+    ANS - In CSS, you can set the font color using the color property. The color property allows you to specify the
+    color for text within an HTML element<br>
+    <br>
+    selector {
+    color: value;
+    }
+  </p>
+  </p>
+
+  <P class="question-class">
+    (18). How do you set the font size in CSS?
+    <p class="color-class">
+    ANS - In CSS, you can set the font size using the font-size property. The font-size property allows you to specify
+    the size of text within an HTML element.<BR>
+    <br>
+    selector {
+    font-size: value;    }
+  </p>
+  </p>
+
+  <P class="question-class">
+    (19). How do you align text in CSS?
+    <p class="color-class">
+      ANS - In CSS, you can align text using the text-align property. The text-align property allows you to specify the horizontal alignment of text within an HTML element.<br>
+      <br>
+      selector {
+        text-align: value;
+      }
+      
+    </p>
+  </p>
+  <p class="question-class">
+
+    (20). Create an HTML document with an unordered list and apply the following
+    styles using CSS:<br>
+    <br> Set the list style type to square.
+    <br> Set the color of the list items to blue.
+    <br> Set the background color of the list to light gray.
+    <div class="color-class">
+      ANS - 
+      <ul  class="unordered-list">
+        <li>car</li>
+        <li>bike</li>
+        <li>cycle</li>
+      </ul>
+    </div>
+  </p>
+
+  <div>
+    <p class="question-class">
+    (21). How do you select a specific element within another element in CSS?
+    </p>
+  
+    <p class="color-class">
+      ANS - To select a specific element within another element in CSS, you can use a combination of selectors known as descendant selectors or child selectors.<br>
+      <br>
+      Descendant Selector: To select an element that is a descendant (nested within) of another element, you can use a space between the selectors.
+      <br>
+      div span {
+        /* CSS properties */
+      }
+      <br>
+      <br>
+      child Selector:To select an element that is a direct child of another element, you can use the > symbol between the selectors. 
+      <br>
+      ul > li {
+        /* CSS properties */
+      }
+
+    </p>
+  </div>
+
+  <div>
+    <p class="question-class">
+    (22). How do you change the list style type in CSS?
+    </p>
+  
+    <p class="color-class">
+      ANS - In CSS, you can change the list style type using the list-style-type property. The list-style-type property allows you to specify the appearance of the list marker or bullet points for unordered lists <code>&lt;ul&gt;</code> and numbered lists <code>&lt;ol&gt;</code>.
+      <br>
+      <br>
+      selector {
+        list-style-type: value;
+      }
+      <br>
+      ul {
+        list-style-type: disc;
+      } -- Filled circle bullet points for unordered lists 
+      
+            
+    </p>
+  </div>
+
+  <div>
+    <p class="question-class">
+      (23). Exercise 3: Create an HTML document with multiple paragraphs and apply the following
+      styles using CSS:<br>
+       Set a border around each paragraph with a thickness of 2 pixels and a color of
+      green.<br>
+       Set a margin of 10 pixels around each paragraph.<br>
+       Set a padding of 5 pixels within each paragraph.<br>
+       Set a background color of yellow for the second paragraph only.<br>
+    </p>
+  
+    <p class="Q23-class">
+      ANS -  first-paragraph {<br>
+        border: 2px solid green; <br>
+        margin: 10px;<br>
+        padding: 5px;<br>
+      }
+      <p class='Q23b-class'>
+        second-paragraph {
+          background-color: yellow; 
+        }
+      </p>
+  
+    </p>
+  </div>
+
+  <div>
+    <p class="question-class">
+      (24). How do you apply a border to an element in CSS?
+    </p>
+  
+    <p class="color-class">
+      ANS - In CSS, you can apply a border to an element using the border property or its individual sub-properties. The border property allows you to specify the width, style, and color of the border all at once. <br>
+      <br>
+      selector {
+        border: width style color;
+      }
+      
+    </p>
+  </div>
+
+  <div>
+    <p class="question-class">
+      (25). How do you set margins around an element in CSS?
+    </p>
+  
+    <p class="color-class" style="white-space: pre">
+  ANS - In CSS, you can set margins around an element using the margin property. The margin property <br>allows you to specify the space around an element, creating gaps or margins between the element<br< and surrounding elements.
+      
+      selector {
+        margin: top right bottom left;
+      }
+      
+    </p>
+  </div>
+
+  <div>
+    <p class="question-class">
+      (26). How do you set padding within an element in CSS?
+    </p>
+  
+    <p class="color-class">
+      ANS -In CSS, you can set padding within an element using the padding property. The padding property allows you to specify the space between the content of an element and its border.<br>
+      <br>
+      selector {
+        padding: top right bottom left;
+      }
+      
+
+    </p>
+  </div>
+
+  <div>
+    <p class="question-class">
+      (27). How do you select a specific element based on its position in CSS?
+    </p>
+  
+    <p class="color-class">
+      ANS - In CSS, you can select a specific element based on its position using pseudo-classes. Pseudo-classes are keywords that can be added to selectors to target specific elements based on their position or state.<br>
+      <br>
+      <div  style="white-space: pre">
+        ul li:first-child {
+          /* Styles applied to the first li element within a ul element */
+        }
+        
+        ul li:last-child {
+          /* Styles applied to the last li element within a ul element */
+        }
+        
+        ul li:nth-child(2n) {
+          /* Styles applied to even numbered li elements within a ul element */
+        }
+        
+        ul li:nth-child(3) {
+          /* Styles applied to the third li element within a ul element */
+        }
+        
+        ul li:first-of-type {
+          /* Styles applied to the first li element of its type within a ul element */
+        }
+        
+        ul li:last-of-type {
+          /* Styles applied to the last li element of its type within a ul element */
+        }
+        
+        ul li:nth-of-type(2) {
+          /* Styles applied to the second li element of its type within a ul element */
+        }
+        
+      </div>
+    </p>
+  </div>
+  
+  
+
+  <div>
+    <p class="question-class" style="white-space: pre">
+      (28).Create an HTML document with a navigation menu and apply the following styles using CSS:
+       Display the navigation items horizontally.
+       Set a background color of gray for the navigation menu.
+       Set a hover effect for the navigation items, changing their background color to dark gray.
+    </p>
+  
+    <p class="color-class">
+      ANS -
+      <div>
+        <ul class="ul-28">
+          <li class="li-28"><a href="#" class="a-28">Home</a></li>
+          <li class="li-28"><a href="#" class="a-28">About</a></li>
+          <li class="li-28"><a href="#" class="a-28">Services</a></li>
+          <li class="li-28"><a href="#" class="a-28">Contact</a></li>
+        </ul>
+      </div>
+    </p>
+  </div>
+
+  <div>
+    <p class="question-class">
+      (29). How do you horizontally display a group of elements in CSS?
+    </p>
+  
+    <p class="color-class" style="white-space: pre">
+  ANS -To horizontally display a group of elements in CSS, you can use the display property<br> with the value inline, inline-block, or flex. Each of these display values has different behavior<br> and usage depending on the specific requirements of your layout.
+
+  inline: Set the display property to inline to make elements flow horizontally in a line,<br> similar to text. Here's an example:
+
+        .element {
+          display: inline;
+        }
+
+inline-Block: Set the display property to inline-block to make elements flow horizontally <br>like inline elements, but with the ability to set width, height, and margins. Here's an example:
+
+        .element {
+          display: inline-block;
+        }
+
+Flexbox: Set the display property to flex on the container element and apply appropriate flexbox<br> properties to the child elements to create a flexible layout with horizontal display. Flexbox provides<br>powerful features for aligning and distributing elements within a container. Here's an example:
+
+        .container {
+          display: flex;
+        }
+
+        <code>&lt;div class="container"&gt;</code> 
+            <code>&lt;div class="element"&gt;</code>Element 1<code>&lt;/div&gt;</code> 
+            <code>&lt;div class="element"&gt;</code>Element 2<code>&lt;/div&gt;</code> 
+            <code>&lt;div class="element"&gt;</code>Element 3<code>&lt;/div&gt;</code> 
+            <code>&lt;div class="element"&gt;</code>Element 4<code>&lt;/div&gt;</code> 
+        <code>&lt;/div&gt;</code>    
+    </p>
+  </div>
 
 
+  <div>
+    <p class="question-class">
+      (30). How do you apply a hover effect to an element in CSS?
+    </p>
+  
+    <p class="color-class">
+      ANS - To apply a hover effect to an element in CSS, you can use the :hover pseudo-class. The :hover pseudo-class targets an element when it is being hovered over by the cursor. You can then apply specific styles to the element when the hover event occurs. <br>
 
-
+      <br>selector:hover {
+      <br>  /* styles applied when the element is being hovered over */
+      <br>}
+      
+    </p>
+  </div>
+  
 </body>
-
-
 
 </html>
