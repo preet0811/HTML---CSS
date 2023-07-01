@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blood Group Information</title>
+    <style>
+      /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      /* Header styles */
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      /* Form styles */
+      form {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        -ms-flex-item-align: center;
+      }
+
+      label {
+        margin-bottom: 5px;
+        color: #555;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+
+      input[type="submit"] {
+        align-self: flex-start;
+        margin-top: 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* Table styles */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      .delete-button {
+        background-color: #ff6347;
+        color: #fff;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Blood Group Information</h1>
+
+    <h2>Add New Entry</h2>
+    <form id="bloodGroupForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="bloodGroup">Blood Group:</label>
+      <input type="text" id="bloodGroup" required />
+
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" id="phoneNumber" required />
+
+      <input type="submit" value="Save" />
+    </form>
+
+    <h2>Stored Information</h2>
+    <table id="bloodGroupTable">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Blood Group</th>
+          <th>Phone Number</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      // Function to handle form submission
+      function saveBloodGroup(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get input values
+        const name = document.getElementById("name").value;
+        const bloodGroup = document.getElementById("bloodGroup").value;
+        const phoneNumber = document.getElementById("phoneNumber").value;
+
+        // Create a new row in the table
+        const table = document
+          .getElementById("bloodGroupTable")
+          .getElementsByTagName("tbody")[0];
+        const newRow = table.insertRow();
+
+        // Insert the data into the row cells
+        const noCell = newRow.insertCell(0);
+        const nameCell = newRow.insertCell(1);
+        const bloodGroupCell = newRow.insertCell(2);
+        const phoneNumberCell = newRow.insertCell(3);
+        const deleteCell = newRow.insertCell(4);
+        noCell.textContent = table.rows.length;
+        nameCell.textContent = name;
+        bloodGroupCell.textContent = bloodGroup;
+        phoneNumberCell.textContent = phoneNumber;
+        deleteCell.innerHTML = '<button class="delete-button">Delete</button>';
+
+        // Save data to local storage
+        const entry = {
+          name: name,
+          bloodGroup: bloodGroup,
+          phoneNumber: phoneNumber,
+        };
+        let bloodGroupData = localStorage.getItem("bloodGroupData");
+        if (bloodGroupData) {
+          bloodGroupData = JSON.parse(bloodGroupData);
+          bloodGroupData.push(entry);
+          localStorage.setItem(
+            "bloodGroupData",
+            JSON.stringify(bloodGroupData)
+          );
+        } else {
+          bloodGroupData = [entry];
+          localStorage.setItem(
+            "bloodGroupData",
+            JSON.stringify(bloodGroupData)
+          );
+        }
+
+        // Clear input fields
+        document.getElementById("name").value = "";
+        document.getElementById("bloodGroup").value = "";
+        document.getElementById("phoneNumber").value = "";
+
+        // Add event listener to delete button
+        const deleteButton = deleteCell.querySelector(".delete-button");
+        deleteButton.addEventListener("click", function () {
+          deleteRow(newRow);
+        });
+      }
+
+      // Function to delete a row from the table and local storage
+      function deleteRow(row) {
+        const table = document
+          .getElementById("bloodGroupTable")
+          .getElementsByTagName("tbody")[0];
+        const rowIndex = row.rowIndex - 1;
+
+        // Prompt for passcode
+        const passcode = prompt("Enter the passcode to delete the entry:");
+
+        // Check the passcode
+        if (passcode === "SISVA") {
+          table.deleteRow(rowIndex);
+
+          let bloodGroupData = localStorage.getItem("bloodGroupData");
+          if (bloodGroupData) {
+            bloodGroupData = JSON.parse(bloodGroupData);
+            bloodGroupData.splice(rowIndex, 1);
+            localStorage.setItem(
+              "bloodGroupData",
+              JSON.stringify(bloodGroupData)
+            );
+          }
+
+          // Update the No column values
+          const rows = table.rows;
+          for (let i = 1; i < rows.length; i++) {
+            rows[i].cells[0].textContent = i;
+          }
+        } else {
+          alert("Incorrect passcode. Entry deletion denied.");
+        }
+      }
+
+      // Load saved data from local storage on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        let bloodGroupData = localStorage.getItem("bloodGroupData");
+        if (bloodGroupData) {
+          bloodGroupData = JSON.parse(bloodGroupData);
+          const table = document
+            .getElementById("bloodGroupTable")
+            .getElementsByTagName("tbody")[0];
+
+          bloodGroupData.forEach(function (entry, index) {
+            const newRow = table.insertRow();
+            const noCell = newRow.insertCell(0);
+            const nameCell = newRow.insertCell(1);
+            const bloodGroupCell = newRow.insertCell(2);
+            const phoneNumberCell = newRow.insertCell(3);
+            const deleteCell = newRow.insertCell(4);
+            noCell.textContent = index + 1;
+            nameCell.textContent = entry.name;
+            bloodGroupCell.textContent = entry.bloodGroup;
+            phoneNumberCell.textContent = entry.phoneNumber;
+            deleteCell.innerHTML =
+              '<button class="delete-button">Delete</button>';
+
+            // Add event listener to delete button
+            const deleteButton = deleteCell.querySelector(".delete-button");
+            deleteButton.addEventListener("click", function () {
+              deleteRow(newRow);
+            });
+          });
+        }
+      });
+
+      // Add event listener to the form
+      const form = document.getElementById("bloodGroupForm");
+      form.addEventListener("submit", saveBloodGroup);
+    </script>
+  </body>
+</html>
