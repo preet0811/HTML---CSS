@@ -20,7 +20,6 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 20px;
-        -ms-flex-item-align: center;
       }
 
       label {
@@ -35,6 +34,10 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         margin-bottom: 10px;
+      }
+
+      input[type="number"] {
+        width: 100px;
       }
 
       input[type="submit"] {
@@ -81,14 +84,13 @@
 
     <h2>Add New Entry</h2>
     <form id="bloodGroupForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" required />
+      <label for="familyName">Family Name:</label>
+      <input type="text" id="familyName" required />
 
-      <label for="bloodGroup">Blood Group:</label>
-      <input type="text" id="bloodGroup" required />
+      <label for="familySize">Family Size:</label>
+      <input type="number" id="familySize" required />
 
-      <label for="phoneNumber">Phone Number:</label>
-      <input type="text" id="phoneNumber" required />
+      <div id="peopleFieldsContainer"></div>
 
       <input type="submit" value="Save" />
     </form>
@@ -97,7 +99,7 @@
     <table id="bloodGroupTable">
       <thead>
         <tr>
-          <th>No</th>
+          <th>Family Name</th>
           <th>Name</th>
           <th>Blood Group</th>
           <th>Phone Number</th>
@@ -108,136 +110,117 @@
     </table>
 
     <script>
+      let rowCount = 1;
+
       // Function to handle form submission
       function saveBloodGroup(event) {
         event.preventDefault(); // Prevent form submission
 
         // Get input values
-        const name = document.getElementById("name").value;
-        const bloodGroup = document.getElementById("bloodGroup").value;
-        const phoneNumber = document.getElementById("phoneNumber").value;
+        const familyName = document.getElementById("familyName").value;
+        const familySize = parseInt(
+          document.getElementById("familySize").value
+        );
 
         // Create a new row in the table
         const table = document
           .getElementById("bloodGroupTable")
           .getElementsByTagName("tbody")[0];
-        const newRow = table.insertRow();
 
-        // Insert the data into the row cells
-        const noCell = newRow.insertCell(0);
-        const nameCell = newRow.insertCell(1);
-        const bloodGroupCell = newRow.insertCell(2);
-        const phoneNumberCell = newRow.insertCell(3);
-        const deleteCell = newRow.insertCell(4);
-        noCell.textContent = table.rows.length;
-        nameCell.textContent = name;
-        bloodGroupCell.textContent = bloodGroup;
-        phoneNumberCell.textContent = phoneNumber;
-        deleteCell.innerHTML = '<button class="delete-button">Delete</button>';
+        for (let i = 1; i <= familySize; i++) {
+          const name = document.getElementById(`name${i}`).value;
+          const bloodGroup = document.getElementById(`bloodGroup${i}`).value;
+          const phoneNumber = document.getElementById(`phoneNumber${i}`).value;
 
-        // Save data to local storage
-        const entry = {
-          name: name,
-          bloodGroup: bloodGroup,
-          phoneNumber: phoneNumber,
-        };
-        let bloodGroupData = localStorage.getItem("bloodGroupData");
-        if (bloodGroupData) {
-          bloodGroupData = JSON.parse(bloodGroupData);
-          bloodGroupData.push(entry);
-          localStorage.setItem(
-            "bloodGroupData",
-            JSON.stringify(bloodGroupData)
-          );
-        } else {
-          bloodGroupData = [entry];
-          localStorage.setItem(
-            "bloodGroupData",
-            JSON.stringify(bloodGroupData)
-          );
+          if (name !== "" && bloodGroup !== "" && phoneNumber !== "") {
+            const newRow = table.insertRow();
+
+            const familyNameCell = newRow.insertCell();
+            const nameCell = newRow.insertCell();
+            const bloodGroupCell = newRow.insertCell();
+            const phoneNumberCell = newRow.insertCell();
+            const deleteCell = newRow.insertCell();
+
+            familyNameCell.innerHTML = i === 1 ? `<h4>${familyName}</h4>` : "";
+            nameCell.textContent = name;
+            bloodGroupCell.textContent = bloodGroup;
+            phoneNumberCell.textContent = phoneNumber;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.classList.add("delete-button");
+            deleteButton.textContent = "Delete";
+
+            deleteButton.addEventListener("click", function () {
+              const confirmation = confirm(
+                "Are you sure you want to delete this entry?"
+              );
+              if (confirmation) {
+                const row = this.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+              }
+            });
+
+            deleteCell.appendChild(deleteButton);
+
+            rowCount++;
+          }
         }
 
         // Clear input fields
-        document.getElementById("name").value = "";
-        document.getElementById("bloodGroup").value = "";
-        document.getElementById("phoneNumber").value = "";
-
-        // Add event listener to delete button
-        const deleteButton = deleteCell.querySelector(".delete-button");
-        deleteButton.addEventListener("click", function () {
-          deleteRow(newRow);
-        });
+        document.getElementById("familyName").value = "";
+        document.getElementById("familySize").value = "";
+        document.getElementById("peopleFieldsContainer").innerHTML = "";
       }
 
-      // Function to delete a row from the table and local storage
-      function deleteRow(row) {
-        const table = document
-          .getElementById("bloodGroupTable")
-          .getElementsByTagName("tbody")[0];
-        const rowIndex = row.rowIndex - 1;
+      // Function to generate input fields based on family size
+      function generatePeopleFields() {
+        const familySize = parseInt(
+          document.getElementById("familySize").value
+        );
+        const peopleFieldsContainer = document.getElementById(
+          "peopleFieldsContainer"
+        );
+        peopleFieldsContainer.innerHTML = "";
 
-        // Prompt for passcode
-        const passcode = prompt("Enter the passcode to delete the entry:");
+        for (let i = 1; i <= familySize; i++) {
+          const label = document.createElement("label");
+          label.textContent = `Person ${i} -`;
 
-        // Check the passcode
-        if (passcode === "SISVA") {
-          table.deleteRow(rowIndex);
+          const nameInput = document.createElement("input");
+          nameInput.type = "text";
+          nameInput.id = `name${i}`;
+          nameInput.placeholder = "Name";
+          nameInput.required = true;
 
-          let bloodGroupData = localStorage.getItem("bloodGroupData");
-          if (bloodGroupData) {
-            bloodGroupData = JSON.parse(bloodGroupData);
-            bloodGroupData.splice(rowIndex, 1);
-            localStorage.setItem(
-              "bloodGroupData",
-              JSON.stringify(bloodGroupData)
-            );
-          }
+          const bloodGroupInput = document.createElement("input");
+          bloodGroupInput.type = "text";
+          bloodGroupInput.id = `bloodGroup${i}`;
+          bloodGroupInput.placeholder = "Blood Group";
+          bloodGroupInput.required = true;
 
-          // Update the No column values
-          const rows = table.rows;
-          for (let i = 1; i < rows.length; i++) {
-            rows[i].cells[0].textContent = i;
-          }
-        } else {
-          alert("Incorrect passcode. Entry deletion denied.");
+          const phoneNumberInput = document.createElement("input");
+          phoneNumberInput.type = "text";
+          phoneNumberInput.id = `phoneNumber${i}`;
+          phoneNumberInput.placeholder = "Phone Number";
+          phoneNumberInput.required = true;
+
+          const lineBreak = document.createElement("br");
+
+          peopleFieldsContainer.appendChild(label);
+          peopleFieldsContainer.appendChild(nameInput);
+          peopleFieldsContainer.appendChild(bloodGroupInput);
+          peopleFieldsContainer.appendChild(phoneNumberInput);
+          peopleFieldsContainer.appendChild(lineBreak);
         }
       }
-
-      // Load saved data from local storage on page load
-      document.addEventListener("DOMContentLoaded", function () {
-        let bloodGroupData = localStorage.getItem("bloodGroupData");
-        if (bloodGroupData) {
-          bloodGroupData = JSON.parse(bloodGroupData);
-          const table = document
-            .getElementById("bloodGroupTable")
-            .getElementsByTagName("tbody")[0];
-
-          bloodGroupData.forEach(function (entry, index) {
-            const newRow = table.insertRow();
-            const noCell = newRow.insertCell(0);
-            const nameCell = newRow.insertCell(1);
-            const bloodGroupCell = newRow.insertCell(2);
-            const phoneNumberCell = newRow.insertCell(3);
-            const deleteCell = newRow.insertCell(4);
-            noCell.textContent = index + 1;
-            nameCell.textContent = entry.name;
-            bloodGroupCell.textContent = entry.bloodGroup;
-            phoneNumberCell.textContent = entry.phoneNumber;
-            deleteCell.innerHTML =
-              '<button class="delete-button">Delete</button>';
-
-            // Add event listener to delete button
-            const deleteButton = deleteCell.querySelector(".delete-button");
-            deleteButton.addEventListener("click", function () {
-              deleteRow(newRow);
-            });
-          });
-        }
-      });
 
       // Add event listener to the form
       const form = document.getElementById("bloodGroupForm");
       form.addEventListener("submit", saveBloodGroup);
+
+      // Add event listener to family size input field
+      const familySizeInput = document.getElementById("familySize");
+      familySizeInput.addEventListener("input", generatePeopleFields);
     </script>
   </body>
 </html>

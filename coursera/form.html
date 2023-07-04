@@ -4,13 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      input,
+      label {
+        margin: 5px;
+      }
+    </style>
   </head>
   <body>
     <form>
       <label for="username"> User Name :</label><br />
       <input type="text" name="username" placeholder=" Enter the name here" />
+      <br />
       <label for="password"> password:</label><br />
       <input type="password" />
+      <br />
+      <label for="number"> Age:</label><br />
+      <input type="number" name="age" />
+      <br />
+      <label for="email">E-mail:</label><br />
+      <input type="email" name="email" />
+      <br />
+      <input type="file" name="file" />
+      <br />
+
+      <textarea ="multiline" row="5" placeholder="descripiton"></textarea>
+      <label for="multiline" name="text"></label>
+      <br />
+
+      <select name="Food">
+        <option value="chocolate">Chocolate</option>
+        <option value="ice-Cream">ice-Cream</option>
+        <option value="cake">Cake</option>
+      </select>
+      <input type="submit" />
     </form>
   </body>
 </html>
